@@ -1,11 +1,14 @@
 <template>
-  <div
-    v-for="btn in buttons"
-    :key="btn"
-    v-text="btn"
-    :class="{ selected: btn === selectedButton }"
-    @click="clickedButton(btn)"
-  ></div>
+  <div class="buttons">
+    <div
+      v-for="btn in buttons"
+      :key="btn"
+      v-text="btn"
+      class="button"
+      :class="{ selected: btn === selectedButton }"
+      @click="clickedButton(btn)"
+    ></div>
+  </div>
 </template>
 
 <script>
@@ -36,8 +39,34 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.selected {
-  color: red;
+<style scoped lang="scss">
+$myYellow: #f5df4e;
+$myGray: #c7c8ca;
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  box-sizing: border-box;
+  width: 200px;
+
+  border: 2px solid $myGray;
+  border-radius: 30px;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  margin: 0 1rem;
+  padding: 0.6rem;
+
+  &.selected {
+    background-color: #f5df4e;
+    border: 2px solid transparent;
+  }
 }
 </style>
