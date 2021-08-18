@@ -1,8 +1,16 @@
 <template>
   <Users />
   <div v-if="selectedUser">
-    <div>{{ selectedUser.name.split(" ")[0].toUpperCase() }}'S TODOS</div>
-    <Selector :values="filterButtons" @selected="filterChanged" />
+    <div class="todo-top">
+      <div class="title">
+        {{ selectedUser.name.split(" ")[0].toUpperCase() }}'S TODOS
+      </div>
+      <Selector
+        class="filter"
+        :values="filterButtons"
+        @selected="filterChanged"
+      />
+    </div>
     <Todos :show="selectedFilter" />
   </div>
 </template>
@@ -46,5 +54,22 @@ $myBlack: #3b3b3b;
 * {
   font-family: Arial, Helvetica, sans-serif;
   color: $myBlack;
+}
+
+.todo-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0.5rem 0;
+
+  .title {
+    width: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .filter {
+    width: 50%;
+  }
 }
 </style>

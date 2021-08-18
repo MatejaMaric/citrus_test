@@ -45,15 +45,17 @@ $myGray: #c7c8ca;
 
 .buttons {
   display: flex;
+  justify-content: space-between;
 }
 
 .button {
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 
   box-sizing: border-box;
   width: 200px;
+  height: 50px;
 
   border: 2px solid $myGray;
   border-radius: 30px;
@@ -61,8 +63,7 @@ $myGray: #c7c8ca;
   font-size: 1rem;
   font-weight: bold;
 
-  margin: 0 1rem;
-  padding: 0.6rem;
+  cursor: pointer;
 
   &.selected {
     background-color: #f5df4e;
