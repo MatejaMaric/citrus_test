@@ -68,6 +68,10 @@ $myWhite: #f0f0f0;
 }
 
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background-color: $myWhite;
   cursor: pointer;
   border-radius: 10px;
