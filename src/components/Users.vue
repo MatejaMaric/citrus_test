@@ -1,11 +1,17 @@
 <template>
   <div>
-    <div v-for="user in users" :key="user.id" v-text="user.name"></div>
+    <div
+      v-for="user in users"
+      :key="user.id"
+      v-text="user.name"
+      :class="{ selected: selectedUser?.id === user.id }"
+      @click="selectUser(user.id)"
+    ></div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -18,11 +24,20 @@ export default {
       users.value = store.getters.getAllUsers;
     });
 
+    const selectedUser = computed(() => store.getters.getSelectedUser);
+    const selectUser = (id) => store.commit("selectUser", id);
+
     return {
       users,
+      selectedUser,
+      selectUser,
     };
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.selected {
+  color: red;
+}
+</style>
