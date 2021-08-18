@@ -5,7 +5,7 @@
       <div
         v-for="user in users"
         :key="user.id"
-        v-text="user.name"
+        v-text="user.name.toUpperCase()"
         class="button"
         :class="{ selected: selectedUser?.id === user.id }"
         @click="selectUser(user.id)"
