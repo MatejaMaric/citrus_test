@@ -46,6 +46,7 @@ $myGray: #c7c8ca;
 .buttons {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .button {
@@ -64,6 +65,8 @@ $myGray: #c7c8ca;
   font-weight: bold;
 
   cursor: pointer;
+
+  margin: 0.3rem;
 
   &.selected {
     background-color: #f5df4e;
