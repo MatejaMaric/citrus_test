@@ -5,11 +5,7 @@
       <div class="title">
         {{ selectedUser.name.split(" ")[0].toUpperCase() }}'S TODOS
       </div>
-      <Selector
-        class="filter"
-        :values="filterButtons"
-        @selected="filterChanged"
-      />
+      <Selector class="filter" @selected="filterChanged" />
     </div>
     <Todos :show="selectedFilter" />
   </div>
@@ -30,9 +26,7 @@ export default {
     const store = useStore();
 
     const selectedUser = computed(() => store.getters.getSelectedUser);
-
-    const filterButtons = ref(["All", "Completed", "Uncompleted"]);
-    const selectedFilter = ref(filterButtons.value[0]);
+    const selectedFilter = ref("All");
 
     const filterChanged = (filter) => {
       selectedFilter.value = filter;
@@ -40,7 +34,6 @@ export default {
 
     return {
       selectedUser,
-      filterButtons,
       selectedFilter,
       filterChanged,
     };

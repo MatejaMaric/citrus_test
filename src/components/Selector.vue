@@ -1,39 +1,62 @@
 <template>
   <div class="buttons">
     <div
-      v-for="btn in buttons"
-      :key="btn"
-      v-text="btn"
       class="button"
-      :class="{ selected: btn === selectedButton }"
-      @click="clickedButton(btn)"
-    ></div>
+      :class="{ selected: 'All' === selectedButton }"
+      @click="clickedButton('All')"
+    >
+      All ({{ AllTodosLength }})
+    </div>
+
+    <div
+      class="button"
+      :class="{ selected: 'Completed' === selectedButton }"
+      @click="clickedButton('Completed')"
+    >
+      Completed ({{ CompletedTodosLength }})
+    </div>
+
+    <div
+      class="button"
+      :class="{ selected: 'Uncompleted' === selectedButton }"
+      @click="clickedButton('Uncompleted')"
+    >
+      Uncompleted ({{ UncompletedTodosLength }})
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
-  props: {
-    values: {
-      type: Array,
-      required: true,
-    },
-  },
   emits: ["selected"],
   setup(props, context) {
-    const selectedButton = ref(props.values?.[0]);
+    const store = useStore();
+    const selectedButton = ref("All");
 
     const clickedButton = (value) => {
       selectedButton.value = value;
       context.emit("selected", value);
     };
 
+    const AllTodosLength = computed(
+      () => store.getters.getAllTodosForSelectedUser?.length
+    );
+    const CompletedTodosLength = computed(
+      () => store.getters.getCompletedTodosForSelectedUser?.length
+    );
+    const UncompletedTodosLength = computed(
+      () => store.getters.getUncompletedTodosForSelectedUser?.length
+    );
+
     return {
-      buttons: props.values,
       selectedButton,
       clickedButton,
+      AllTodosLength,
+      CompletedTodosLength,
+      UncompletedTodosLength,
     };
   },
 };
