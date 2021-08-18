@@ -1,12 +1,24 @@
 <template>
-  <div v-for="todo in todos" :key="todo.id" class="todo">
-    <input type="checkbox" :id="todo.id" v-model="todo.completed" />
-    <label
-      :for="todo.id"
+  <label
+    v-for="todo in todos"
+    :key="todo.id"
+    :for="'todo__checkbox--' + todo.id"
+    class="todo"
+  >
+    <input
+      type="checkbox"
+      :id="'todo__checkbox--' + todo.id"
+      v-model="todo.completed"
+    />
+
+    <div class="todo__box" :class="{ selected: todo.completed }"></div>
+
+    <div
+      class="todo__text"
       v-text="todo.title"
-      :class="{ completed: todo.completed }"
-    ></label>
-  </div>
+      :class="{ selected: todo.completed }"
+    ></div>
+  </label>
 </template>
 
 <script>
@@ -40,16 +52,45 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.todo {
-  margin: 0.3rem 0;
+<style scoped lang="scss">
+$myBlack: #949398;
+$myBlue: #89acd2;
 
-  .completed {
-    text-decoration: line-through;
+.todo {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  margin: 1rem 0;
+
+  input[type="checkbox"] {
+    display: none;
   }
 
-  label {
-    margin-left: 1rem;
+  .todo__box {
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid $myBlack;
+    border-radius: 6px;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &.selected::after {
+      content: "\2714";
+      color: $myBlue;
+    }
+  }
+
+  .todo__text {
+    font-size: 1.3rem;
+    &.selected {
+      text-decoration: line-through;
+    }
   }
 }
 </style>
