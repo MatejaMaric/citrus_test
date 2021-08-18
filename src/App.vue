@@ -1,6 +1,6 @@
 <template>
   <Users />
-  <div v-if="selectedUser">
+  <div class="container" v-if="selectedUser">
     <div class="todo-top">
       <div class="title">
         {{ selectedUser.name.split(" ")[0].toUpperCase() }}'S TODOS
@@ -56,6 +56,13 @@ $myBlack: #3b3b3b;
   color: $myBlack;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 3rem;
+}
+
 .todo-top {
   display: flex;
   justify-content: space-between;
@@ -64,13 +71,13 @@ $myBlack: #3b3b3b;
 
   .title {
     flex: 1;
-    margin: 0.5rem 0;
+    margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
   }
   .filter {
     flex: 1;
-    margin: 0.5rem 0;
+    margin-bottom: 1rem;
   }
 }
 </style>
