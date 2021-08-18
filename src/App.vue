@@ -60,16 +60,17 @@ $myBlack: #3b3b3b;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin: 0.5rem 0;
+  flex-wrap: wrap;
 
   .title {
-    width: 50%;
+    flex: 1;
+    margin: 0.5rem 0;
     font-size: 2rem;
     font-weight: bold;
   }
   .filter {
-    width: 50%;
+    flex: 1;
+    margin: 0.5rem 0;
   }
 }
 </style>
