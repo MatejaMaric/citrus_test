@@ -40,4 +40,11 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+$myBlack: #3b3b3b;
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  color: $myBlack;
+}
+</style>
